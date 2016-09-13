@@ -21,6 +21,7 @@
              placeholder="list comma separated dishes you usually have for lunch"
              class="form-control"
              ng-model="lunch">
+             <!-- an empty item, i.e., , , is not considered as an item towards the count-->
          </div>
          <div class="form-group">
              <button class="btn btn-default" ng-click="checkIfTooMuch()">Check If Too Much</button>
