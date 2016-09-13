@@ -1,6 +1,13 @@
 (function(){
   'use strict';
 
+  /* added polyfill when string trim function is not defined */
+  if (!String.prototype.trim) {
+    String.prototype.trim = function () {
+      return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
+    };
+  }
+
   angular.module('LunchCheck', [])
   .controller('LunchCheckController', LunchCheckController);
 
