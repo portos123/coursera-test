@@ -1,41 +1,54 @@
 (function(){
   'use strict';
 
-  /* added polyfill when string trim function is not defined */
-  if (!String.prototype.trim) {
-    String.prototype.trim = function () {
-      return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
-    };
+  angular.module('ShoppingListCheckOff', [])
+  .controller('ToBuyShoppingController', ToBuyShoppingController)
+  .controller('AlreadyBoughtShoppingController', AlreadyBoughtShoppingController)
+  .service('ShoppingListCheckOffService', ShoppingListCheckOffService);
+
+  ToBuyShoppingController.$inject = ['ShoppingListCheckOffService'];
+  function ToBuyShoppingController(ShoppingListCheckOffService) {
+    var toBuyList = this;
+
+    toBuyList.setBought = function(index, name, quantity) {
+      ShoppingListCheckOffService.setBought(index);
+    }
+
+    toBuyList.items = ShoppingListCheckOffService.getToBuyItems();
   }
 
-  angular.module('LunchCheck', [])
-  .controller('LunchCheckController', LunchCheckController);
+  AlreadyBoughtShoppingController.$inject = ['ShoppingListCheckOffService'];
+  function AlreadyBoughtShoppingController(ShoppingListCheckOffService) {
+    var boughtList = this;
 
-  LunchCheckController.$inject = ['$scope'];
-  function LunchCheckController($scope) {
-    $scope.lunch = "";
-    $scope.lunch_arr = []; /* for further use */
-    $scope.styleName = "";
-    $scope.message = "";
+    boughtList.items = ShoppingListCheckOffService.getBoughtItems();
+  }
 
-    $scope.checkIfTooMuch = function() {
-      $scope.lunch = $scope.lunch.trim();
-      if ($scope.lunch == "") {
-        $scope.message = "Please enter data first";
-        $scope.lunch_arr = [];
-        $scope.styleName = "bad";
-      } else {
-        $scope.lunch_arr = $scope.lunch.split(",");
-        // remove empty elements
-        $scope.lunch_arr = $scope.lunch_arr.filter(function(e) { return e === 0 || e.trim() });
-        if ($scope.lunch_arr.length <= 3) {
-          $scope.message = "Enjoy!";
-          $scope.styleName = "good";
-        } else {
-          $scope.message = "Too much!";
-          $scope.styleName = "good";
-        }
-      }
+
+  function ShoppingListCheckOffService() {
+    var service = this;
+
+    var toBuyItems = [
+      { name: "cookies", quantity: 10 },
+      { name: "eggs", quantity: 30 },
+      { name: "bottles of beer", quantity: 10 },
+      { name: "litres of milk", quantity: 15 },
+      { name: "loaf of bread", quantity: 1 }
+    ];
+    var boughtItems = [];
+
+    service.setBought = function(itemIndex) {
+      var item = toBuyItems[itemIndex];
+      toBuyItems.splice(itemIndex, 1);
+      boughtItems.push(item);
+    };
+
+    service.getToBuyItems = function() {
+      return toBuyItems;
+    };
+
+    service.getBoughtItems = function() {
+      return boughtItems;
     };
   }
 })();
