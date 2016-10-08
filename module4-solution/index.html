@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app='MenuApp'>
+  <head>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Chinese Restaurant</title>
+  </head>
+  <body>
+    <ui-view></ui-view>
+
+    <loading-icon></loading-icon>
+
+    <!-- Libraries -->
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-ui-router.min.js"></script>
+
+    <!-- Modules -->
+    <script src="src/menuapp/menuapp.module.js"></script>
+    <script src="src/data/data.module.js"></script>
+    <script src="src/loader/loader.module.js"></script>
+
+    <!-- Routes -->
+    <script src="src/routes.js"></script>
+
+    <!-- 'MenuApp' module artifacts -->
+    <script src="src/menuapp/categories.component.js"></script>
+    <script src="src/menuapp/categories.controller.js"></script>
+    <script src="src/menuapp/items.component.js"></script>
+    <script src="src/menuapp/items.controller.js"></script>
+
+    <!-- 'Data' module artifacts -->
+    <script src="src/data/menudata.constant.js"></script>
+    <script src="src/data/menudata.service.js"></script>
+
+    <!-- 'Loader' module artifacts -->
+    <script src="src/loader/loadingicon.component.js"></script>
+
+  </body>
+</html>
