@@ -1,0 +1,42 @@
+<div class="container">
+  <h2 id="my-info-title" class="text-center">My info</h2>
+
+  <div ng-if="!myInfoCtrl.myInfo.saved" class="alert alert-warning">
+    Not Signed Up Yet. <strong><a ui-sref="public.signup">Sign up Now!</a></strong>
+  </div>
+
+  <div class="my-info" ng-if="myInfoCtrl.myInfo.saved">
+    <table class="table">
+      <tbody>
+        <tr>
+          <th>First name</th>
+          <td>{{myInfoCtrl.myInfo.firstName}}</td>
+        </tr>
+        <tr>
+          <th>Last name</th>
+          <td>{{myInfoCtrl.myInfo.lastName}}</td>
+        </tr>
+        <tr>
+          <th>E-mail</th>
+          <td>{{myInfoCtrl.myInfo.email}}</td>
+        </tr>
+        <tr>
+          <th>Phone</th>
+          <td>{{myInfoCtrl.myInfo.phone}}</td>
+        </tr>
+        <tr>
+          <th>Favorite dish</th>
+          <td>
+            <menu-item ng-repeat="menuItem in myInfoCtrl.myInfo.favoritDish"
+                       menu-item="menuItem">
+            </menu-item>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="text-center" ng-if="myInfoCtrl.myInfo.saved">
+    <a  class="btn btn-default text-center" ui-sref="public.signup">Change my info</a>
+  </div>
+</div>

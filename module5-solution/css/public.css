@@ -113,6 +113,37 @@ h3.menu-item-title {
 }
 /* END SINGLE CATEGORY PAGE */
 
+/* SIGN-UP PAGE */
+#sign-up-form {
+    width: 60%;
+    margin: 20px auto;
+    padding: 20px;
+    text-align:center;
+}
+#sign-up-form input {
+  color: black;
+}
+#sign-up-form .alert {
+  margin-top: 5px;
+}
+.ng-touched.ng-valid {
+  border: 2px green solid;
+}
+.ng-touched.ng-invalid {
+  border: 2px red solid;
+}
+/* END SIGN-UP PAGE */
+
+/* MY INFO PAGE */
+.my-info {
+    margin: 20px auto;
+    border: 1px solid white;
+}
+.my-info th {
+  white-space: nowrap;
+}
+/* END MY INFO PAGE */
+
 
 /********** Large devices only **********/
 @media (min-width: 1200px) {

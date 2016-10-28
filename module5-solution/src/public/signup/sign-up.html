@@ -1,0 +1,65 @@
+<div class="container">
+  <h2 id="sign-up-title" class="text-center">Sign-up for newsletter</h2>
+
+  <form id="sign-up-form" name="signUpForm" novalidate>
+    <div class="form-group">
+      <input type="text" class="form-control" name="firstName" placeholder="Your first name"
+        ng-model="signUpCtrl.user.firstName"
+        required
+        min-length="4">
+        <div class="alert alert-danger fade in"
+          ng-if="(signUpForm.firstName.$error.minLength ||
+          signUpForm.firstName.$error.required) && signUpForm.firstName.$touched">
+          First Name must be at least 4 characters long.
+        </div>
+    </div>
+
+    <div class="form-group">
+      <input type="text" class="form-control" name="lastName" placeholder="Your last name"
+        ng-model="signUpCtrl.user.lastName"
+        required
+        min-length="2">
+        <div class="alert alert-danger fade in"
+          ng-if="(signUpForm.lastName.$error.minLength ||
+          signUpForm.lastName.$error.required) && signUpForm.lastName.$touched">
+          Last Name must be at least 2 characters long.
+        </div>
+    </div>
+
+    <div class="form-group">
+      <input type="email" class="form-control" name="email" placeholder="Your e-mail address"
+        ng-model="signUpCtrl.user.email"
+        required>
+        <div class="alert alert-danger fade in"
+          ng-if="signUpForm.email.$invalid && signUpForm.email.$touched">
+          Must be a valid e-mail address: something@somewhere format.
+        </div>
+    </div>
+
+    <div class="form-group">
+      <input type="text" class="form-control" name="phone" placeholder="Your phone number ###-###-####"
+        ng-model="signUpCtrl.user.phone"
+        pattern="(\d{3})-(\d{3})-(\d{4})">
+        <div class="alert alert-danger fade in"
+          ng-if="signUpForm.phone.$invalid && signUpForm.phone.$touched">
+          Phone must be in the format ###-###-####.
+        </div>
+    </div>
+
+    <div class="form-group">
+      <input type="text" class="form-control" name="choice" placeholder="Your favorit dish menu number"
+        ng-model="signUpCtrl.user.choice">
+        <div class="alert alert-danger fade in"
+          ng-if="(!signUpCtrl.validChoice && signUpCtrl.choiceChecked) && signUpForm.choice.$touched">
+          No such menu number exists.
+        </div>
+    </div>
+
+    <button class="btn btn-default" ng-disabled="signUpForm.$invalid" ng-click="signUpCtrl.saveMyInfo()">Submit</button>
+  </form>
+
+  <div class="alert alert-success"
+    ng-if="(signUpCtrl.validChoice && signUpCtrl.choiceChecked) && signUpCtrl.user.saved">
+    Your information has been saved.
+  </div>
+</div>
