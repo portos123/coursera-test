@@ -6,9 +6,9 @@
       <input type="text" class="form-control" name="firstName" placeholder="Your first name"
         ng-model="signUpCtrl.user.firstName"
         required
-        min-length="4">
+        minlength="4">
         <div class="alert alert-danger fade in"
-          ng-if="(signUpForm.firstName.$error.minLength ||
+          ng-if="(signUpForm.firstName.$error.minlength ||
           signUpForm.firstName.$error.required) && signUpForm.firstName.$touched">
           First Name must be at least 4 characters long.
         </div>
@@ -18,9 +18,9 @@
       <input type="text" class="form-control" name="lastName" placeholder="Your last name"
         ng-model="signUpCtrl.user.lastName"
         required
-        min-length="2">
+        minlength="2">
         <div class="alert alert-danger fade in"
-          ng-if="(signUpForm.lastName.$error.minLength ||
+          ng-if="(signUpForm.lastName.$error.minlength ||
           signUpForm.lastName.$error.required) && signUpForm.lastName.$touched">
           Last Name must be at least 2 characters long.
         </div>
